@@ -1,5 +1,7 @@
 FROM python:3.12
 
+# TODO assert C.UTF8 and PYTHONUNBUFFERED are set correctly
+
 WORKDIR /srv
 RUN --mount=type=cache,target=/root/.cache pip install --upgrade pip-tools wheel
 COPY requirements.txt .
