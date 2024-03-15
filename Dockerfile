@@ -7,6 +7,7 @@ RUN --mount=type=cache,target=/root/.cache pip install --upgrade pip-tools wheel
 COPY requirements.txt .
 RUN --mount=type=cache,target=/root/.cache pip-sync
 
+# TODO multi-stage for faster development builds?
 RUN mkdir -p static
 
 COPY . .

@@ -10,5 +10,8 @@
         "deploy": "node_modules/.bin/wrangler deploy",
         "start": "node_modules/.bin/wrangler dev",
         "test": "node_modules/.bin/vitest"
+    },
+    "dependencies": {
+        "configurable-http-proxy": "^4.6.1"
     }
 }
