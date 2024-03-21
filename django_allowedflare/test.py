@@ -2,11 +2,11 @@ from sys import modules
 
 from django.test import SimpleTestCase
 
-from django_allowedflare import clean_username
+from allowedflare import clean_username
 
 
 class Test(SimpleTestCase):
-    def test_clean_username(self):
+    def test_clean_username_unmodified(self):
         with self.settings(
             ALLOWEDFLARE_EMAIL_DOMAIN='off', ALLOWEDFLARE_PRIVATE_DOMAIN='domain.com'
         ):
@@ -19,23 +19,25 @@ class Test(SimpleTestCase):
             self.assertEqual(clean_username('user@domain.com'), 'user')
 
     def test_fetch_or_reuse_keys(self):
-        # Arrange: probably not parallel safe
+        # Warning: probably not parallel safe
+
+        # Arrange: import
         try:
-            del modules['django_allowedflare']
+            del modules['allowedflare']
         except KeyError:
             pass
-        import django_allowedflare
+        import allowedflare
 
         # Assert: initial conditions
-        self.assertEqual(django_allowedflare.cached_keys, [])
-        self.assertEqual(django_allowedflare.cache_updated.timestamp(), 0)
+        self.assertEqual(allowedflare.cached_keys, [])
+        self.assertEqual(allowedflare.cache_updated.timestamp(), 0)
         with self.settings(ALLOWEDFLARE_ACCESS_URL='https://domain.cloudflareaccess.com'):
             # Act: TODO mock
-            keys = django_allowedflare.fetch_or_reuse_keys()
+            keys = allowedflare.fetch_or_reuse_keys()
 
         # Assert: module level variables are updated
-        self.assertEqual(django_allowedflare.cached_keys, keys)
-        self.assertGreater(django_allowedflare.cache_updated.timestamp(), 0)
+        self.assertEqual(allowedflare.cached_keys, keys)
+        self.assertGreater(allowedflare.cache_updated.timestamp(), 0)
 
-        # Arrange: cleanup
-        del modules['django_allowedflare']
+        # Cleanup
+        del modules['allowedflare']
