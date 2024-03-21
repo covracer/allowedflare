@@ -62,12 +62,15 @@ django==4.2.1
     #   -r requirements.in
     #   django-extensions
     #   django-health-check
+    #   django-sql-explorer
     #   django-stubs
     #   django-stubs-ext
     #   djangorestframework
 django-extensions==3.2.3
     # via -r requirements.in
 django-health-check==3.18.1
+    # via -r requirements.in
+django-sql-explorer==4.0.2
     # via -r requirements.in
 django-stubs==4.2.1
     # via
@@ -317,7 +320,9 @@ sniffio==1.3.1
 soupsieve==2.5
     # via beautifulsoup4
 sqlparse==0.4.4
-    # via django
+    # via
+    #   django
+    #   django-sql-explorer
 stack-data==0.6.3
     # via ipython
 terminado==0.18.0

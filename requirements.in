@@ -3,6 +3,7 @@ cryptography
 django
 django-extensions
 django-health-check
+django-sql-explorer
 djangorestframework
 jupyterlab
 pyjwt
