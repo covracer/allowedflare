@@ -29,7 +29,7 @@ services:
 
     web:
         build: .
-        command: python -m manage runserver
+        command: gunicorn
         depends_on:
             - postgres
         environment:
@@ -38,7 +38,7 @@ services:
             - ALLOWEDFLARE_EMAIL_DOMAIN
             - ALLOWEDFLARE_PRIVATE_DOMAIN
         ports:
-            # Should match manage.py
+            # Should match manage.py and gunicorn.conf.py
             - 8001:8001
         volumes:
             - .:/srv

@@ -5,6 +5,7 @@ django-extensions
 django-health-check
 django-sql-explorer
 djangorestframework
+gunicorn
 jupyterlab
 pyjwt
 requests
